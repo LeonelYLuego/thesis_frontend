@@ -1,1 +1,170 @@
-/* You can add global styles to this file, and also import other style files */
+// @use "@angular/material" as mat;
+
+// // Be sure that you only ever include this mixin once!
+// @include mat.core();
+
+// // Define your theme with color palettes, typography and density
+
+// $mat-theme-primary-palette: map-merge(
+//   mat.$orange-palette,
+//   (
+//     contrast: (
+//       500: rgba(0, 0, 0, 0.87),
+//       100: black,
+//     ),
+//   )
+// );
+// $mat-theme-primary: mat.define-palette(
+//   $mat-theme-primary-palette,
+//   $default: 500,
+//   $lighter: 100,
+//   $darker: 700,
+//   $text: 500
+// );
+
+// $mat-theme-accent-palette: map-merge(
+//   mat.$grey-palette,
+//   (
+//     contrast: (
+//       500: rgba(0, 0, 0, 0.87),
+//     ),
+//   )
+// );
+// $mat-theme-accent: mat.define-palette(
+//   $mat-theme-accent-palette,
+//   $default: 700,
+//   $lighter: 500,
+//   $darker: 800,
+//   $text: 600
+// );
+
+// $mat-theme-warn-palette: map-merge(
+//   mat.$red-palette,
+//   (
+//     contrast: (
+//       800: #ffffff,
+//       500: #000000,
+//       900: #ffffff,
+//     ),
+//   )
+// );
+// $mat-theme-warn: mat.define-palette(
+//   $mat-theme-warn-palette,
+//   $default: 800,
+//   $lighter: 500,
+//   $darker: 900,
+//   $text: A700
+// );
+
+// $mat-dark-theme-primary-palette: map-merge(
+//   mat.$orange-palette,
+//   (
+//     contrast: (
+//       500: rgba(0, 0, 0, 0.87),
+//       300: rgba(0, 0, 0, 0.87),
+//       700: rgba(0, 0, 0, 0.87),
+//     ),
+//   )
+// );
+// $mat-dark-theme-primary: mat.define-palette(
+//   $mat-dark-theme-primary-palette,
+//   $default: 500,
+//   $lighter: 300,
+//   $darker: 700,
+//   $text: 700
+// );
+
+// $mat-dark-theme-accent-palette: map-merge(
+//   mat.$grey-palette,
+//   (
+//     contrast: (
+//       500: rgba(0, 0, 0, 0.87),
+//     ),
+//   )
+// );
+// $mat-dark-theme-accent: mat.define-palette(
+//   $mat-dark-theme-accent-palette,
+//   $default: 800,
+//   $lighter: 900,
+//   $darker: 500,
+//   $text: A100
+// );
+
+// $mat-dark-theme-warn-palette: map-merge(mat.$red-palette, ());
+// $mat-dark-theme-warn: mat.define-palette(
+//   $mat-dark-theme-warn-palette,
+//   $default: 700,
+//   $lighter: 500,
+//   $darker: 900,
+//   $text: 100
+// );
+
+// $mat-density: 0;
+
+// $mat-core-theme: mat.define-light-theme(
+//   (
+//     color: (
+//       primary: $mat-theme-primary,
+//       accent: $mat-theme-accent,
+//       warn: $mat-theme-warn,
+//     ),
+//     typography: mat.define-typography-config(),
+//     density: $mat-density,
+//   )
+// );
+
+// $mat-dark-theme: mat.define-dark-theme(
+//   (
+//     color: (
+//       primary: $mat-dark-theme-primary,
+//       accent: $mat-dark-theme-accent,
+//       warn: $mat-dark-theme-warn,
+//     ),
+//   )
+// );
+
+// @include mat.all-component-themes($mat-core-theme);
+
+// .dark-theme {
+//   @include mat.all-component-colors($mat-dark-theme);
+// }
+
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$orange-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($my-theme);
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html,
+body {
+  height: 100%;
+  background-color: rgb(34, 34, 34);
+  color: white;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-icon-button {
+  line-height: 1;
+}
