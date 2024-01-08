@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@core/material.module';
 
 @Component({
-  selector: 'app-landing',
+  selector: 'app-not-found',
   standalone: true,
   imports: [CommonModule, MaterialModule, RouterModule],
-  templateUrl: './landing.component.html',
-  styleUrl: './landing.component.scss',
+  templateUrl: './not-found.component.html',
+  styleUrl: './not-found.component.scss',
 })
-export class LandingComponent {}
+export class NotFoundComponent {}

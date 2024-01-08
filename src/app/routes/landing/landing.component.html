@@ -2,7 +2,13 @@
 <div class="w-full h-14 flex flex-row items-center px-5 text-primary">
   <p class="font-bold">MASCE</p>
   <div class="flex-auto"></div>
-  <button mat-flat-button color="primary">Iniciar sesión</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [routerLink]="['/', 'auth', 'log-in']"
+  >
+    Iniciar sesión
+  </button>
 </div>
 <div class="w-full">
   <div class="flex flex-row flex-wrap justify-center w-full h-first">

@@ -1,0 +1,50 @@
+<div class="w-full h-screen flex flex-row justify-center items-center">
+  <form
+    class="bg-neutral-800 rounded-md shadow-md p-3 w-full max-w-lg m-4"
+    [formGroup]="signUpForm"
+    (ngSubmit)="signUp()"
+  >
+    <h1 class="text-xl font-bold text-primary mb-4">Registrarse</h1>
+    <!-- Username -->
+    <mat-form-field appearance="outline" class="w-full mb-2">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput formControlName="username" />
+      <mat-error>Nombre de usuario inválido</mat-error>
+    </mat-form-field>
+    <!-- First name -->
+    <mat-form-field appearance="outline" class="w-full mb-2">
+      <mat-label>Nombre(s)</mat-label>
+      <input matInput formControlName="firstName" />
+      <mat-error>Nombre inválido</mat-error>
+    </mat-form-field>
+    <!-- Last name -->
+    <mat-form-field appearance="outline" class="w-full mb-2">
+      <mat-label>Apellido(s)</mat-label>
+      <input matInput formControlName="lastName" />
+      <mat-error>Apellido inválido</mat-error>
+    </mat-form-field>
+    <!-- Phone -->
+    <mat-form-field appearance="outline" class="w-full mb-2">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="phone" />
+      <mat-error>Teléfono inválido</mat-error>
+    </mat-form-field>
+    <!-- Password -->
+    <mat-form-field appearance="outline" class="w-full mb-2">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error>Contraseña inválida</mat-error>
+    </mat-form-field>
+    <!-- Repeat password -->
+    <mat-form-field appearance="outline" class="w-full mb-2">
+      <mat-label>Repetir contraseña</mat-label>
+      <input matInput type="password" formControlName="repeatPassword" />
+      <mat-error>Contraseña inválida</mat-error>
+    </mat-form-field>
+    <div class="flex flex-row-reverse">
+      <button mat-raised-button color="primary" type="submit">
+        Registrarse
+      </button>
+    </div>
+  </form>
+</div>
