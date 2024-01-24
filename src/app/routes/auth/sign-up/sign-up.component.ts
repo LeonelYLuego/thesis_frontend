@@ -1,7 +1,7 @@
 import { AccountsService } from '@accounts/accounts.service';
 import { CreateAccountInterface } from '@accounts/models/account.interface';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,17 +10,23 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '@core/material.module';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule,
+  ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
   signUpForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
@@ -50,12 +56,20 @@ export class SignUpComponent {
       Validators.maxLength(64),
     ]),
   });
+  publicKey?: string;
+  redirectTo?: string;
 
   constructor(
     private accountsService: AccountsService,
     private matSnackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
+
+  ngOnInit(): void {
+    this.publicKey = this.route.snapshot.queryParams['publicKey'];
+    this.redirectTo = this.route.snapshot.queryParams['redirectTo'];
+  }
 
   async signUp(): Promise<void> {
     this.signUpForm.controls.password.updateValueAndValidity();
@@ -70,7 +84,14 @@ export class SignUpComponent {
       try {
         delete values['repeatPassword'];
         await this.accountsService.create(values as CreateAccountInterface);
-        this.router.navigate(['/', 'auth', 'log-in']);
+        if (this.publicKey && this.redirectTo)
+          this.router.navigate(['/', 'auth', 'log-in'], {
+            queryParams: {
+              publicKey: this.publicKey,
+              redirectTo: this.redirectTo,
+            },
+          });
+        else this.router.navigate(['/', 'auth', 'log-in']);
       } catch (ex: any) {
         if (ex.status && ex.status == 400) {
           this.signUpForm.controls.username.setErrors({ incorrect: true });

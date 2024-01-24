@@ -15,12 +15,20 @@ export const routes: Routes = [
     canActivate: [notAuthGuard],
   },
   {
+    path: 'oauth',
+    loadChildren: () => import('@oauth/oauth.routes'),
+  },
+  {
     path: '',
     component: BaseComponent,
     children: [
       {
         path: 'errors',
         loadChildren: () => import('@errors/errors.routes'),
+      },
+      {
+        path: '',
+        loadChildren: () => import('@pages/pages.routes'),
       },
       {
         path: '**',

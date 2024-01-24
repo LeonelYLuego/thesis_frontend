@@ -21,5 +21,7 @@ export const SERVER_ENDPOINTS = {
   },
   PAGES: {
     BASE_ENDPOINT: `${SERVER_RESOURCES.PAGES}`,
+    BY_PUBLIC_KEY: (publicKey: string) =>
+      `${SERVER_RESOURCES.PAGES}/${publicKey}`,
   },
 };

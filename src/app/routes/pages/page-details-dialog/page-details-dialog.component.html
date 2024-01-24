@@ -1,0 +1,58 @@
+<h1 class="text-primary font-bold text-2xl my-3 mx-4">
+  {{ page ? "Página" : "Agregar página" }}
+</h1>
+<form [formGroup]="pageForm" (submit)="createDelete()">
+  <div mat-dialog-content>
+    <mat-form-field appearance="outline" class="w-full mb-3">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" class="!text-white" />
+      <mat-error>Nombre inválido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-full mb-3">
+      <mat-label>URL</mat-label>
+      <input matInput formControlName="url" class="!text-white" />
+      <mat-error>URL inválida</mat-error>
+      <mat-hint>Ej. www.google.com</mat-hint>
+    </mat-form-field>
+    <div *ngIf="page">
+      <mat-form-field appearance="outline" class="w-full mb-3">
+        <mat-label>Llave pública</mat-label>
+        <input matInput disabled class="!text-white" [value]="page.publicKey" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full mb-3">
+        <mat-label>Llave privada</mat-label>
+        <input
+          matInput
+          disabled
+          class="!text-white"
+          [value]="page.privateKey"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button
+      *ngIf="page"
+      mat-raised-button
+      type="submit"
+      color="warn"
+      class="ms-2"
+      [disabled]="pageForm.invalid"
+    >
+      Eliminar
+    </button>
+    <button
+      *ngIf="!page"
+      mat-raised-button
+      type="submit"
+      color="primary"
+      class="ms-2"
+      [disabled]="pageForm.invalid"
+    >
+      Agregar
+    </button>
+    <button mat-raised-button type="button" mat-dialog-close class="ms-2">
+      Cancelar
+    </button>
+  </div>
+</form>

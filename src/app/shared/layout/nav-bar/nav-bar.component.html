@@ -5,10 +5,15 @@
     >MASCE</a
   >
   <div class="flex-auto"></div>
-  <button mat-flat-button color="primary" [matMenuTriggerFor]="user">
-    Leonel
+  <button
+    *ngIf="account"
+    mat-stroked-button
+    color="primary"
+    [matMenuTriggerFor]="accountMenu"
+  >
+    {{ account.firstName }} {{ account.lastName }}
   </button>
-  <mat-menu #user="matMenu">
+  <mat-menu #accountMenu="matMenu">
     <button mat-menu-item (click)="logOut()">
       <mat-icon>logout</mat-icon>Cerrar sesión
     </button>

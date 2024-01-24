@@ -26,7 +26,8 @@
       "@auth/*": ["./src/app/routes/auth/*"],
       "@pages/*": ["./src/app/routes/pages/*"],
       "@accounts/*": ["./src/app/routes/accounts/*"],
-      "@errors/*": ["./src/app/routes/errors/*"]
+      "@errors/*": ["./src/app/routes/errors/*"],
+      "@oauth/*": ["./src/app/routes/oauth/*"],
     }
   },
   "angularCompilerOptions": {

@@ -21,7 +21,7 @@
     <div class="flex flex-row justify-center mb-4">
       <a
         class="text-primary hover:underline cursor-pointer hover:text-orange-600"
-        [routerLink]="['/', 'auth', 'sign-up']"
+        (click)="goSignUp()"
         >¿No tienes una cuenta?, Regístrate</a
       >
     </div>

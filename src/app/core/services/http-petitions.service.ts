@@ -43,4 +43,18 @@ export class HttpPetitions {
         });
     });
   }
+
+  async delete<T>(url: string, params?: HttpParams): Promise<T> {
+    return await new Promise<T>((resolve, reject) => {
+      this.http
+        .delete<T>(url, {
+          headers: this.getHeaders(),
+          params,
+        })
+        .subscribe({
+          next: (result) => resolve(result),
+          error: (err) => reject(err),
+        });
+    });
+  }
 }
