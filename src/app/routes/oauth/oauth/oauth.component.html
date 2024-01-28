@@ -10,4 +10,30 @@
       </p>
     </div>
   </div>
+  <div
+    *ngIf="!invalid"
+    class="flex flex-row items-center justify-center h-screen"
+  >
+    <div class="bg-neutral-800 rounded-md shadow-md p-3 w-full max-w-lg m-4">
+      <p class="text-3xl font-bold text-primary mb-4 text-center">MASCE</p>
+      <h1 class="text-xl font-bold text-primary mb-4">
+        {{ account?.firstName }} {{ account?.lastName }}, la siguiente cuenta
+        quiere iniciar sesión:
+      </h1>
+      <p class="w-full text-center text-lg font-bold mb-4">{{ page?.name }}</p>
+      <div class="flex flex-row-reverse">
+        <button mat-flat-button class="ms-2" (click)="cancel()">
+          Cancelar
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          class="ms-2"
+          (click)="accept()"
+        >
+          Iniciar sesión
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

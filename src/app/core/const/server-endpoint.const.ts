@@ -18,10 +18,16 @@ export const SERVER_ENDPOINTS = {
   ACCOUNTS: {
     BASE_ENDPOINT: `${SERVER_RESOURCES.ACCOUNTS}`,
     BY_ID: (id: string) => `${SERVER_RESOURCES.ACCOUNTS}/${id}`,
+    PAGES: {
+      BASE_ENDPOINT: `${SERVER_RESOURCES.ACCOUNTS}/pages`,
+      BY_PAGE_ID: (pageId: string) =>
+        `${SERVER_RESOURCES.ACCOUNTS}/pages/${pageId}`,
+    },
   },
   PAGES: {
     BASE_ENDPOINT: `${SERVER_RESOURCES.PAGES}`,
     BY_PUBLIC_KEY: (publicKey: string) =>
       `${SERVER_RESOURCES.PAGES}/${publicKey}`,
+    ACCEPT: (id: string) => `${SERVER_RESOURCES.PAGES}/${id}/accept`,
   },
 };
