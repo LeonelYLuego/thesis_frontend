@@ -3,6 +3,742 @@
 </h1>
 <form [formGroup]="pageForm" (submit)="createDelete()">
   <div mat-dialog-content>
+    <div *ngIf="page" class="mb-8">
+      <p class="w-full text-justify">
+        Para integrar OAuth a su página, deberá primero redireccionar al usuario
+        a la siguiente url:
+      </p>
+      <p class="my-2 p-2 text-white w-full rounded-md bg-black overflow-y-auto">
+        https://www.msce.ddns.net/oauth?id={{
+          page.publicKey.toUpperCase()
+        }}&redirectTo={{ page.url }}
+      </p>
+      <p>
+        Después de que el usuario aceptó iniciar sesión, usted recibirá la
+        información del usuario encriptada como parámetro de consulta con el
+        nombre de "encrypted" en al url proporcionada como redirigir, como se
+        muestra a continuación:
+      </p>
+      <p class="my-2 p-2 text-white w-full rounded-md bg-black overflow-y-auto">
+        https://{{ page.url }}?encrypted=&lbrace;datos encriptados&rbrace;
+      </p>
+      <p>
+        Para desencriptar los datos usted deberá implementar el siguiente código
+        en nodejs:
+      </p>
+      <div
+        class="my-2 p-2 text-white w-full rounded-md bg-black overflow-y-auto"
+      >
+        <div
+          style="
+            color: rgb(225, 225, 225);
+            font-family: 'Cascadia Code PL', Consolas, 'Courier New', monospace,
+              Consolas, 'Courier New', monospace;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 19px;
+            white-space: pre;
+            --darkreader-inline-color: #d5d1cc;
+            --darkreader-inline-bgcolor: #232627;
+          "
+          data-darkreader-inline-color=""
+          data-darkreader-inline-bgcolor=""
+        >
+          <span
+            style="
+              color: rgb(255, 216, 102);
+              --darkreader-inline-color: #ffd761;
+            "
+            data-darkreader-inline-color=""
+            >import</span
+          ><span
+            style="
+              color: rgb(200, 200, 200);
+              --darkreader-inline-color: #c5c0b9;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >CryptoJS</span
+          ><span
+            style="
+              color: rgb(200, 200, 200);
+              --darkreader-inline-color: #c5c0b9;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(255, 216, 102);
+              --darkreader-inline-color: #ffd761;
+            "
+            data-darkreader-inline-color=""
+            >from</span
+          ><span
+            style="
+              color: rgb(200, 200, 200);
+              --darkreader-inline-color: #c5c0b9;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(169, 220, 118);
+              --darkreader-inline-color: #a9dc76;
+            "
+            data-darkreader-inline-color=""
+            >&apos;crypto-js&apos;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >;</span
+          ><br /><br /><span
+            style="
+              color: rgb(120, 232, 198);
+              --darkreader-inline-color: #75e7c5;
+            "
+            data-darkreader-inline-color=""
+            >const</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >encrypted</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(255, 216, 102);
+              --darkreader-inline-color: #ffd761;
+            "
+            data-darkreader-inline-color=""
+            >=</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(110, 110, 110);
+              font-style: italic;
+              --darkreader-inline-color: #a39b8e;
+            "
+            data-darkreader-inline-color=""
+            >//Obtener el par&aacute;metro de consulta
+            &quot;encrypted&quot;</span
+          ><br /><span
+            style="
+              color: rgb(255, 216, 102);
+              --darkreader-inline-color: #ffd761;
+            "
+            data-darkreader-inline-color=""
+            >if</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >(</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >encrypted</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >)</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >&lbrace;<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 232, 198);
+              --darkreader-inline-color: #75e7c5;
+            "
+            data-darkreader-inline-color=""
+            >var</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >decrypted</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(255, 216, 102);
+              --darkreader-inline-color: #ffd761;
+            "
+            data-darkreader-inline-color=""
+            >=</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >CryptoJS</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >AES</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >decrypt</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >(<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp; &nbsp;&nbsp;</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >encrypted</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >,<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp; &nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >CryptoJS</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >enc</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >Utf8</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >parse</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >(</span
+          ><span
+            style="
+              color: rgb(169, 220, 118);
+              --darkreader-inline-color: #a9dc76;
+            "
+            data-darkreader-inline-color=""
+            >&apos;{{ page.privateKey }}&apos;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >),<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp; &nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >&lbrace;<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp; &nbsp; &nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >mode</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >:</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >CryptoJS</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >mode</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >ECB</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >,<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp; &nbsp; &nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >padding</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >:</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >CryptoJS</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >pad</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >Pkcs7</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >,<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp; &nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >&rbrace;<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >);</span
+          ><br /><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 232, 198);
+              --darkreader-inline-color: #75e7c5;
+            "
+            data-darkreader-inline-color=""
+            >var</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >decryptedText</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(255, 216, 102);
+              --darkreader-inline-color: #ffd761;
+            "
+            data-darkreader-inline-color=""
+            >=</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >CryptoJS</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >enc</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >Utf8</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >stringify</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >(</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >decrypted</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >);<br /></span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >&nbsp;&nbsp;</span
+          ><span
+            style="
+              color: rgb(120, 232, 198);
+              --darkreader-inline-color: #75e7c5;
+            "
+            data-darkreader-inline-color=""
+            >console</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >log</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >(</span
+          ><span
+            style="
+              color: rgb(120, 232, 198);
+              --darkreader-inline-color: #75e7c5;
+            "
+            data-darkreader-inline-color=""
+            >JSON</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >.</span
+          ><span
+            style="
+              color: rgb(120, 220, 232);
+              --darkreader-inline-color: #75dbe7;
+            "
+            data-darkreader-inline-color=""
+            >parse</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >(</span
+          ><span
+            style="color: rgb(255, 97, 136); --darkreader-inline-color: #ff5d85"
+            data-darkreader-inline-color=""
+            >decryptedText</span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >));<br /></span
+          ><span
+            style="
+              color: rgb(225, 225, 225);
+              --darkreader-inline-color: #d5d1cc;
+            "
+            data-darkreader-inline-color=""
+            >&rbrace;</span
+          >
+        </div>
+      </div>
+    </div>
     <mat-form-field appearance="outline" class="w-full mb-3">
       <mat-label>Nombre</mat-label>
       <input matInput formControlName="name" class="!text-white" />
@@ -16,11 +752,11 @@
     </mat-form-field>
     <div *ngIf="page">
       <mat-form-field appearance="outline" class="w-full mb-3">
-        <mat-label>Llave pública</mat-label>
+        <mat-label>Id</mat-label>
         <input matInput disabled class="!text-white" [value]="page.publicKey" />
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-full mb-3">
-        <mat-label>Llave privada</mat-label>
+        <mat-label>Llave secreta</mat-label>
         <input
           matInput
           disabled

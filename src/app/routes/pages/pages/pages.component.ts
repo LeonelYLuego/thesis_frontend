@@ -28,7 +28,7 @@ export class PagesComponent implements OnInit {
 
   openPageDetails(): void {
     this.matDialog.open(PageDetailsDialogComponent, {
-      width: '500px',
+      width: '1000px',
     });
   }
 }

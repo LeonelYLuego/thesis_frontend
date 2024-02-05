@@ -32,7 +32,7 @@ export class OAuthComponent implements OnInit {
   account?: Account;
 
   async ngOnInit(): Promise<void> {
-    const publicKey = this.route.snapshot.queryParams['publicKey'] as
+    const publicKey = this.route.snapshot.queryParams['id'] as
       | string
       | undefined;
     this.redirectTo = this.route.snapshot.queryParams['redirectTo'] as
@@ -42,8 +42,7 @@ export class OAuthComponent implements OnInit {
       try {
         this.page = await this.pagesService.findOneByPublicKey(publicKey);
 
-        if (this.redirectTo.indexOf(this.page.url) != -1 || true) {
-          // TODO: Modify later
+        if (this.redirectTo.indexOf(this.page.url) != -1) {
           try {
             this.account = await this.authService.logged();
 
