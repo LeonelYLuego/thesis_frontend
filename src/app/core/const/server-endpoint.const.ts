@@ -2,7 +2,7 @@ import { isDevMode } from '@angular/core';
 
 const SERVER_PATH = isDevMode()
   ? 'http://localhost:3000/api'
-  : 'http://localhost:3000/api';
+  : 'https://masce.ddns.net/api';
 
 const SERVER_RESOURCES = {
   AUTH: `${SERVER_PATH}/auth`,

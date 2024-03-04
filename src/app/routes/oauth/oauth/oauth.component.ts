@@ -32,9 +32,11 @@ export class OAuthComponent implements OnInit {
   account?: Account;
 
   async ngOnInit(): Promise<void> {
-    const publicKey = this.route.snapshot.queryParams['id'] as
-      | string
-      | undefined;
+    let publicKey = this.route.snapshot.queryParams['id'] as string | undefined;
+    if (!publicKey)
+      publicKey = this.route.snapshot.queryParams['publicKey'] as
+        | string
+        | undefined;
     this.redirectTo = this.route.snapshot.queryParams['redirectTo'] as
       | string
       | undefined;
@@ -74,7 +76,8 @@ export class OAuthComponent implements OnInit {
 
   async accept(): Promise<void> {
     const result = (await this.OAuthService.accept(this.page!.id)).value;
-    window.location.href = `${this.redirectTo!}?encrypted=${encodeURIComponent(
+    console.log(this.redirectTo);
+    window.location.href = `https://${this.redirectTo!}?encrypted=${encodeURIComponent(
       result
     )}`;
   }

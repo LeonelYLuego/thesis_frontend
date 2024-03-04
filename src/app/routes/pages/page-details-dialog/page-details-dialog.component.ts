@@ -25,7 +25,7 @@ export class PageDetailsDialogComponent implements OnInit {
     name: new FormControl('', [Validators.required, Validators.maxLength(32)]),
     url: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^www\.[a-zA-Z0-9_-]+(\.[a-zA-Z]{2,})+$/),
+      Validators.pattern(/^[a-zA-Z0-9_-]+(\.[a-zA-Z]{2,})+$/),
       Validators.maxLength(32),
     ]),
   });

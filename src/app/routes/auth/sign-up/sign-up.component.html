@@ -32,14 +32,55 @@
     <!-- Password -->
     <mat-form-field appearance="outline" class="w-full mb-2">
       <mat-label>Contraseña</mat-label>
-      <input matInput type="password" formControlName="password" />
-      <mat-error>Contraseña inválida</mat-error>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        (change)="validatePassword()"
+      />
+      <mat-error *ngIf="signUpForm.controls.password.hasError('lowerCase')"
+        >Al menos una minúscula</mat-error
+      >
+      <mat-error *ngIf="signUpForm.controls.password.hasError('upperCase')"
+        >Al menos una mayúscula</mat-error
+      >
+      <mat-error *ngIf="signUpForm.controls.password.hasError('number')"
+        >Al menos un número</mat-error
+      >
+      <mat-error *ngIf="signUpForm.controls.password.hasError('minimum')"
+        >Al menos 8 caracteres</mat-error
+      >
+      <mat-error *ngIf="signUpForm.controls.password.hasError('different')"
+        >Contraseñas no coinciden</mat-error
+      >
     </mat-form-field>
     <!-- Repeat password -->
     <mat-form-field appearance="outline" class="w-full mb-2">
       <mat-label>Repetir contraseña</mat-label>
-      <input matInput type="password" formControlName="repeatPassword" />
-      <mat-error>Contraseña inválida</mat-error>
+      <input
+        matInput
+        type="password"
+        formControlName="repeatPassword"
+        (change)="validateRepeatPassword()"
+      />
+      <mat-error
+        *ngIf="signUpForm.controls.repeatPassword.hasError('lowerCase')"
+        >Al menos una minúscula</mat-error
+      >
+      <mat-error
+        *ngIf="signUpForm.controls.repeatPassword.hasError('upperCase')"
+        >Al menos una mayúscula</mat-error
+      >
+      <mat-error *ngIf="signUpForm.controls.repeatPassword.hasError('number')"
+        >Al menos un número</mat-error
+      >
+      <mat-error *ngIf="signUpForm.controls.repeatPassword.hasError('minimum')"
+        >Al menos 8 caracteres</mat-error
+      >
+      <mat-error
+        *ngIf="signUpForm.controls.repeatPassword.hasError('different')"
+        >Contraseñas no coinciden</mat-error
+      >
     </mat-form-field>
     <div class="flex flex-row-reverse">
       <button mat-raised-button color="primary" type="submit">

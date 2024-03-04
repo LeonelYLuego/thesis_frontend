@@ -71,13 +71,39 @@ export class SignUpComponent implements OnInit {
     this.redirectTo = this.route.snapshot.queryParams['redirectTo'];
   }
 
+  validatePassword(): void {
+    const passForm = this.signUpForm.controls.password;
+    passForm.updateValueAndValidity();
+    if (passForm.value)
+      if (!/[a-z]/.test(passForm.value))
+        passForm.setErrors({ lowerCase: true });
+      else if (!/[A-Z]/.test(passForm.value))
+        passForm.setErrors({ upperCase: true });
+      else if (!/\d/.test(passForm.value)) passForm.setErrors({ number: true });
+      else if (!/[a-zA-Z\d]{8,}/.test(passForm.value))
+        passForm.setErrors({ minimum: true });
+  }
+
+  validateRepeatPassword(): void {
+    const passForm = this.signUpForm.controls.repeatPassword;
+    passForm.updateValueAndValidity();
+    if (passForm.value)
+      if (!/[a-z]/.test(passForm.value))
+        passForm.setErrors({ lowerCase: true });
+      else if (!/[A-Z]/.test(passForm.value))
+        passForm.setErrors({ upperCase: true });
+      else if (!/\d/.test(passForm.value)) passForm.setErrors({ number: true });
+      else if (!/[a-zA-Z\d]{8,}/.test(passForm.value))
+        passForm.setErrors({ minimum: true });
+  }
+
   async signUp(): Promise<void> {
     this.signUpForm.controls.password.updateValueAndValidity();
     this.signUpForm.controls.repeatPassword.updateValueAndValidity();
     const values = this.signUpForm.value;
     if (values.password != values.repeatPassword) {
-      this.signUpForm.controls.password.setErrors({ incorrect: true });
-      this.signUpForm.controls.repeatPassword.setErrors({ incorrect: true });
+      this.signUpForm.controls.password.setErrors({ different: true });
+      this.signUpForm.controls.repeatPassword.setErrors({ different: true });
     }
 
     if (this.signUpForm.valid) {
